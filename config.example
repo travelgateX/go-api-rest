@@ -1,0 +1,7 @@
+[db]
+host = "pg-host"
+port = "5432"
+user = "pg-user"
+pass = "pg-pass"
+name = "pg-dbname"
+ssl  = false
