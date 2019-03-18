@@ -7,9 +7,18 @@ This project uses Go Modules and requires Go 1.11+. If your Go version is lesser
 ```bash
 git clone https://github.com/travelgateX/go-api-rest
 ```
-TODO : get database config from file.
-TODO : add createTable sql script.
+## Database configuration
+To add your database configuration take the config.example file and modify it with your data. Then rename the file to config.toml
 
+If you want to try this exact example, run this command on your database.
+```sql
+CREATE TABLE public.todo (
+    id SERIAL PRIMARY KEY,
+    title character varying(255),
+    body character varying(255)
+);
+```
+Then you just need to run the projetc!
 ```bash
 go run main.go
 ```
