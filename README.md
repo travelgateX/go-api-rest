@@ -3,18 +3,15 @@
 This project is a base structure API for making POST and GET requests. It's meant to serve as a reference to build your own REST API. 
 
 # Installation
-For this project, first you will need to install the *go-chi* package.
+This project uses Go Modules and requires Go 1.11+. If your Go version is lesser than 1.11, install the dependeces inside the go.mod file.
 ```bash
-go get -u github.com/go-chi/chi	
+git clone https://github.com/travelgateX/go-api-rest
 ```
-You also will need the render subpackage.
-```bash
-go get github.com/go-chi/render
-```
+TODO : get database config from file.
+TODO : add createTable sql script.
 
-sqlx library 
-```bash  
-go get github.com/jmoiron/sqlx
+```bash
+go run main.go
 ```
 
 # Add your package
