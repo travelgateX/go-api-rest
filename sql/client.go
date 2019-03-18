@@ -6,17 +6,10 @@ import (
 	"sync"
 
 	"github.com/jmoiron/sqlx"
+	"github.com/spf13/viper"
 
 	// Required
 	_ "github.com/lib/pq"
-)
-
-const (
-	Host     = "localhost"
-	Port     = "5432"
-	User     = "postgres"
-	Password = "postgres"
-	Dbname   = "postgres"
 )
 
 // Instance : global variable for client
@@ -31,10 +24,21 @@ type Client struct {
 
 // CreateClient : new sqlx client constructor
 func CreateClient() (*Client, error) {
-	ssl := "sslmode=disable"
+	// Get database connection string
+	viper.SetConfigName("config")
+	viper.AddConfigPath(".")
+	err := viper.ReadInConfig()
+	if err != nil {
+		log.Fatalln(fmt.Errorf("fatal error config file: %s", err))
+	}
+
+	ssl := ""
+	if !viper.GetBool("db.ssl") {
+		ssl = "sslmode=disable"
+	}
 
 	connString := fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s %v",
-		Host, Port, User, Password, Dbname, ssl)
+		viper.GetString("db.host"), viper.GetString("db.port"), viper.GetString("db.user"), viper.GetString("db.pass"), viper.GetString("db.name"), ssl)
 
 	db, err := sqlx.Connect("postgres", connString)
 	if err != nil {
@@ -45,7 +49,6 @@ func CreateClient() (*Client, error) {
 	c := &Client{DB: db}
 	return c, err
 }
-
 
 // MustCreateClient : singleton pattern for new sqlx client
 func MustCreateClient() {
