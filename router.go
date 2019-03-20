@@ -28,7 +28,6 @@ func newRouter(jwtParserConfig jwt.ParserConfig) *chi.Mux {
 		middleware.Logger, // remove in production
 		middleware.DefaultCompress,
 		middleware.Recoverer,
-		authMiddleware,
 	)
 
 	// Api root route "/v1"
