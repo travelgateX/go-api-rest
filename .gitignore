@@ -1,6 +1,4 @@
 *.exe
 /vendor
-go.mod
-go.sum
 config.toml
 debug
