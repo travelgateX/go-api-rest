@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"os"
 
+	"go-api-rest/config"
 	"go-api-rest/sql"
 )
 
@@ -16,8 +17,11 @@ func main() {
 		port = os.Getenv("PORT")
 	}
 
+	// Load config
+	c := config.LoadConfig()
+
 	// Create client
-	sql.MustCreateClient()
+	sql.MustCreateClient(c.GetSQLConnectionString())
 
 	router := newRouter()
 	log.Fatal(http.ListenAndServe(":"+port, router))
