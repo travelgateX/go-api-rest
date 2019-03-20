@@ -4,7 +4,7 @@ import (
 	"errors"
 	"net/http"
 
-	"billing-calculation-center/responserror"
+	"go-api-rest/responserror"
 
 	"github.com/go-chi/chi"
 	"github.com/go-chi/render"

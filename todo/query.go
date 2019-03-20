@@ -1,8 +1,9 @@
 package todo
 
 import (
-	"billing-calculation-center/sql"
 	"errors"
+
+	"go-api-rest/sql"
 )
 
 // Get a todo

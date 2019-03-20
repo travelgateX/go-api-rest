@@ -1,10 +1,11 @@
 package main
 
 import (
-	"billing-calculation-center/sql"
 	"log"
 	"net/http"
 	"os"
+
+	"go-api-rest/sql"
 )
 
 const defaultPort = "8080"
