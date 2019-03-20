@@ -15,6 +15,7 @@ func main() {
 		port = os.Getenv("PORT")
 	}
 
+	// Create client
 	sql.MustCreateClient()
 
 	router := newRouter()
