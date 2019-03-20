@@ -23,6 +23,8 @@ func main() {
 	// Create client
 	sql.MustCreateClient(c.GetSQLConnectionString())
 
-	router := newRouter()
+	// Create new router
+	router := newRouter(c.GetJwtParserConfig())
+
 	log.Fatal(http.ListenAndServe(":"+port, router))
 }

@@ -5,6 +5,8 @@ import (
 	"log"
 
 	"github.com/spf13/viper"
+
+	"github.com/travelgateX/go-jwt-tools/jwt"
 )
 
 // Config struct
@@ -33,4 +35,16 @@ func (c *Config) GetSQLConnectionString() string {
 
 	return fmt.Sprintf("host=%s port=%s user=%s password=%s dbname=%s %v",
 		viper.GetString("db.host"), viper.GetString("db.port"), viper.GetString("db.user"), viper.GetString("db.pass"), viper.GetString("db.name"), ssl)
+}
+
+// GetJwtParserConfig get jwt parser config
+func (c *Config) GetJwtParserConfig() jwt.ParserConfig {
+	return jwt.ParserConfig{
+		AdminGroup:       viper.GetString("auth.admin_group"),
+		PublicKey:        viper.GetString("auth.public_key"),
+		DummyToken:       viper.GetString("auth.dummy_token"),
+		IgnoreExpiration: viper.GetBool("auth.ignore_exp"),
+		GroupsClaim:      viper.GetStringSlice("auth.groups_claim"),
+		MemberIDClaim:    viper.GetStringSlice("auth.member_id_claim"),
+	}
 }
