@@ -7,8 +7,18 @@ This project uses Go Modules and requires Go 1.11+. If your Go version is lesser
 ```bash
 git clone https://github.com/travelgateX/go-api-rest
 ```
-## Database configuration
-To add your database configuration take the config.example file and modify it with your data. Then rename the file to config.toml
+# Configuration
+## Database
+To add your database configuration take the **config.example** file and modify the [db] part with your data. Then rename the file to config.toml
+```toml
+[db]
+host = "YOUR-HOST"
+port = "5432"
+user = "USER"
+pass = "PASSWORD"
+name = "DBNAME"
+ssl  = false
+ ```
 
 If you want to try this exact example, run this command on your database.
 ```sql
@@ -18,11 +28,14 @@ CREATE TABLE public.todo (
     body character varying(255)
 );
 ```
-Then you just need to run the projetc!
-```bash
-go run main.go
-```
 
+## Authorization
+If you want to test the authorization middleware, take the **config.example** file and modify the [auth] part with your authorization data. 
+
+
+There is a specific route to test the authorization package: **/v1/api/todo/jwt_example**. 
+
+*Note: If the config file is left empty, all the other querys will work anyway.*
 # Add your package
 There is an example package <code>todo</code>. You can add your own package with your functions. In order to do it:
 
@@ -73,5 +86,8 @@ Then you must add it and mount it to the version you want:
         r.Mount("api/YOUPACKAGE",YOURPACKAGE.Routes())
 	})
 ```
-
+Then you just need to run the projetc!
+```bash
+go run main.go
+```
 That should be enough to have a small functional REST API.
