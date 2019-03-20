@@ -1,7 +1,15 @@
 [db]
-host = "pg-host"
+host = ""
 port = "5432"
-user = "pg-user"
-pass = "pg-pass"
-name = "pg-dbname"
+user = ""
+pass = ""
+name = ""
 ssl  = false
+
+[auth]
+admin_group = ""
+public_key = ""
+dummy_token = ""
+ignore_exp = false
+groups_claim = [""]
+member_id_claim = [""]
