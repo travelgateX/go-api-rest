@@ -88,6 +88,6 @@ Then you must add it and mount it to the version you want:
 ```
 Then you just need to run the projetc!
 ```bash
-go run main.go
+go run .
 ```
 That should be enough to have a small functional REST API.
